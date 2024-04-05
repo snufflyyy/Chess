@@ -1,3 +1,0 @@
-/home/braden/CProjects/Chess/build/_deps/raylib-subbuild/CMakeFiles/raylib-populate.dir
-/home/braden/CProjects/Chess/build/_deps/raylib-subbuild/CMakeFiles/edit_cache.dir
-/home/braden/CProjects/Chess/build/_deps/raylib-subbuild/CMakeFiles/rebuild_cache.dir
