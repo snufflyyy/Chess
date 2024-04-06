@@ -8,14 +8,14 @@ const Color blackColor = {148, 148, 148, 255};
 Tile chessBoard[8][8];
 
 // creates the game board
-void createBoard(bool color) {
+void createBoard() {
     bool isWhite = color;
 
     // black
     if (color == false) {
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
-                chessBoard[x][y].rectangle = (Rectangle) {x * TILESIZE,y * TILESIZE,TILESIZE,TILESIZE};
+                chessBoard[x][y].rectangle = (Rectangle) {x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE};
                 chessBoard[x][y].piece.rectangle = chessBoard[x][y].rectangle;
 
                 switch (x) {
@@ -44,7 +44,7 @@ void createBoard(bool color) {
     } else {
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
-                chessBoard[x][y].rectangle = (Rectangle) {x * TILESIZE,y * TILESIZE,TILESIZE,TILESIZE};
+                chessBoard[x][y].rectangle = (Rectangle) {x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE};
                 chessBoard[x][y].piece.rectangle = chessBoard[x][y].rectangle;
 
                 switch (x) {
@@ -83,10 +83,26 @@ void createBoard(bool color) {
     }
 }
 
+void rotateBoard() {
+    
+}
+
 void drawBoard() {
     for (int x = 0; x < 8; x++) {
         for (int y = 0; y < 8; y++) {
-            DrawRectangleRec(chessBoard[x][y].rectangle, chessBoard[x][y].color);
+            if (chessBoard[x][y].isVaild == false) {
+                DrawRectangleRec(chessBoard[x][y].rectangle, chessBoard[x][y].color);
+            } else {
+                DrawRectangleRec (
+                    chessBoard[x][y].rectangle, 
+                    (Color) {
+                        chessBoard[x][y].color.r + 40,
+                        chessBoard[x][y].color.g + 40, 
+                        chessBoard[x][y].color.b, 
+                        chessBoard[x][y].color.a
+                    }
+                );
+            }
         }
     }
 }

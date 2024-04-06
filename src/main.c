@@ -10,26 +10,27 @@
 
 int main() {
     // set up (maybe move to another file)
-    ConfigFlags(FLAG_MSAA_4X_HINT);
-    ConfigFlags(FLAG_VSYNC_HINT);
-    SetTargetFPS(60);
     InitWindow(WINDOWWIDTH, WINDOWHEIGHT, "Chess");
+
+    SetWindowState(FLAG_VSYNC_HINT);
+    SetWindowState(FLAG_WINDOW_RESIZABLE);
 
     srand(time(NULL));
 
     // false = black and true = white
-    bool color = (rand() % 2 == 0) ? false : true;
+    color = (rand() % 2 == 0) ? false : true;
 
-    createBoard(color);
+    createBoard();
     createPieces();
 
     while (!WindowShouldClose()) {
-        input(color);
+        input();
 
         BeginDrawing();
             ClearBackground(BLACK);
             drawBoard();
             drawPieces();
+            DrawFPS(10, 10);
         EndDrawing();
     }
 

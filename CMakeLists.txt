@@ -28,7 +28,7 @@ add_executable(
         src/include/piece.h
         src/piece.c
         src/include/variables.h
-        src/include/variables.h
+        src/variables.c
         src/input.c
         src/include/input.h
 )

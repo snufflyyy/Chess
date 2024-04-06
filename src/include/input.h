@@ -1,8 +1,10 @@
 #ifndef CHESS_INPUT_H
 #define CHESS_INPUT_H
 
-#include "stdbool.h"
+#include <raylib.h>
 
-void input(bool color);
+extern Vector2 selectedPiece;
+
+void input();
 
 #endif //CHESS_INPUT_H

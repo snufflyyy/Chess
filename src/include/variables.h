@@ -1,7 +1,8 @@
 #ifndef CHESS_VARIABLES_H
 #define CHESS_VARIABLES_H
+#include <stdbool.h>
 
-#define WINDOWWIDTH 600
+#define WINDOWWIDTH 600 
 #define WINDOWHEIGHT 600
 
 // finds the correct tile size based on the
@@ -11,5 +12,7 @@
 #else
     #define TILESIZE (WINDOWHEIGHT / 8)
 #endif
+
+extern bool color;
 
 #endif //CHESS_VARIABLES_H

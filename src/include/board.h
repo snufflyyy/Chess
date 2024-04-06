@@ -5,11 +5,9 @@
 #define CHESS_BOARD_H
 
 typedef struct {
-    // a, b, c, d, e, f, g, h
     char letter;
-    // 1, 2, 3, 4, 5, 6, 7, 8
     short number;
-
+    bool isVaild;
     Piece piece;
     Rectangle rectangle;
     Color color;
@@ -17,7 +15,9 @@ typedef struct {
 
 extern Tile chessBoard[8][8];
 
-void createBoard(bool color);
+void createBoard();
+
+void rotateBoard();
 
 void drawBoard();
 
