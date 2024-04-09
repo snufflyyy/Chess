@@ -1,11 +1,13 @@
 #include "include/board.h"
 #include "include/variables.h"
+#include <stdio.h>
 
 // board tile color
 const Color whiteColor = {212, 212, 212, 255};
 const Color blackColor = {148, 148, 148, 255};
 
 Tile chessBoard[8][8];
+Tile tempBoard[8][8];
 
 // creates the game board
 void createBoard() {
@@ -17,19 +19,6 @@ void createBoard() {
             for (int y = 0; y < 8; y++) {
                 chessBoard[x][y].rectangle = (Rectangle) {x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE};
                 chessBoard[x][y].piece.rectangle = chessBoard[x][y].rectangle;
-
-                switch (x) {
-                    case 0: chessBoard[x][y].letter = 'A'; break;
-                    case 1: chessBoard[x][y].letter = 'B'; break;
-                    case 2: chessBoard[x][y].letter = 'C'; break;
-                    case 3: chessBoard[x][y].letter = 'D'; break;
-                    case 4: chessBoard[x][y].letter = 'E'; break;
-                    case 5: chessBoard[x][y].letter = 'F'; break;
-                    case 6: chessBoard[x][y].letter = 'G'; break;
-                    case 7: chessBoard[x][y].letter = 'H'; break;
-                }
-
-                chessBoard[x][y].number = y + 1;
 
                 if (isWhite) {
                     chessBoard[x][y].color = whiteColor;
@@ -47,29 +36,6 @@ void createBoard() {
                 chessBoard[x][y].rectangle = (Rectangle) {x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE};
                 chessBoard[x][y].piece.rectangle = chessBoard[x][y].rectangle;
 
-                switch (x) {
-                    case 0: chessBoard[x][y].letter = 'A'; break;
-                    case 1: chessBoard[x][y].letter = 'B'; break;
-                    case 2: chessBoard[x][y].letter = 'C'; break;
-                    case 3: chessBoard[x][y].letter = 'D'; break;
-                    case 4: chessBoard[x][y].letter = 'E'; break;
-                    case 5: chessBoard[x][y].letter = 'F'; break;
-                    case 6: chessBoard[x][y].letter = 'G'; break;
-                    case 7: chessBoard[x][y].letter = 'H'; break;
-                }
-
-                // there has to be a better way of doing this
-                switch (y) {
-                    case 0: chessBoard[x][y].number = 8; break;
-                    case 1: chessBoard[x][y].number = 7; break;
-                    case 2: chessBoard[x][y].number = 6; break;
-                    case 3: chessBoard[x][y].number = 5; break;
-                    case 4: chessBoard[x][y].number = 4; break;
-                    case 5: chessBoard[x][y].number = 3; break;
-                    case 6: chessBoard[x][y].number = 2; break;
-                    case 7: chessBoard[x][y].number = 1; break;
-                }
-
                 if (isWhite) {
                     chessBoard[x][y].color = whiteColor;
                     isWhite = false;
@@ -84,7 +50,21 @@ void createBoard() {
 }
 
 void rotateBoard() {
-    
+    // create temp board
+    for (int x = 0; x < 8; x++) {
+        for (int y = 0; y < 8; y++) {
+            tempBoard[x][y] = chessBoard[x][y];
+        }
+    }
+    // "flip" board
+    for (int x = 0; x < 8; x++) {
+        for (int y = 0; y < 8; y++) {
+            chessBoard[x][y] = tempBoard[7 - x][7 - y];
+        }
+    }
+    // change color
+    color = !color;
+    createBoard();
 }
 
 void drawBoard() {
@@ -93,24 +73,18 @@ void drawBoard() {
             if (chessBoard[x][y].isVaild == false) {
                 DrawRectangleRec(chessBoard[x][y].rectangle, chessBoard[x][y].color);
             } else {
-                DrawRectangleRec (
-                    chessBoard[x][y].rectangle, 
-                    (Color) {
-                        chessBoard[x][y].color.r + 40,
-                        chessBoard[x][y].color.g + 40, 
-                        chessBoard[x][y].color.b, 
-                        chessBoard[x][y].color.a
-                    }
-                );
-            }
-        }
-    }
-}
+                Color temp = chessBoard[x][y].color;
+                // makes the squares look yellow
+                temp.r += 50;
+                temp.g += 50;
 
-void boardCleanUp() {
-    for (int x = 0; x < 8; x++) {
-        for (int y = 0; y < 8; y++) {
-            UnloadTexture(chessBoard[x][y].piece.texture);
+                // checks for overflow related issues, this isn't the best way but it works
+                if (temp.r < chessBoard[x][y].color.r) { temp.r = 255; }
+                if (temp.g < chessBoard[x][y].color.g) { temp.g = 255; }
+                if (temp.b < chessBoard[x][y].color.b) { temp.b = 255; } 
+
+                DrawRectangleRec(chessBoard[x][y].rectangle, temp);
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
-#include <raylib.h>
-
 #ifndef CHESS_PIECE_H
 #define CHESS_PIECE_H
+
+#include <raylib.h>
 
 typedef enum {
     NONE,
@@ -14,20 +14,17 @@ typedef enum {
 } PieceType;
 
 typedef struct {
-    char letter;
-    short number;
-    
     Rectangle rectangle;
-    PieceType type;
     Texture2D texture;
+    PieceType type;
     bool color;
     int moves;
+    bool canEnPassant;
 } Piece;
 
-void getVaildMoves(int x, int y, bool color);
-
+void getVaildMoves(int x, int y);
 void createPieces();
-
 void drawPieces();
+void pieceCleanUp();
 
 #endif //CHESS_PIECE_H

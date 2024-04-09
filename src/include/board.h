@@ -1,12 +1,10 @@
-#include <raylib.h>
-#include "piece.h"
-
 #ifndef CHESS_BOARD_H
 #define CHESS_BOARD_H
 
+#include <raylib.h>
+#include "piece.h"
+
 typedef struct {
-    char letter;
-    short number;
     bool isVaild;
     Piece piece;
     Rectangle rectangle;
@@ -16,11 +14,7 @@ typedef struct {
 extern Tile chessBoard[8][8];
 
 void createBoard();
-
 void rotateBoard();
-
 void drawBoard();
-
-void boardCleanUp();
 
 #endif //CHESS_BOARD_H
