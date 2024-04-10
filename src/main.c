@@ -7,14 +7,7 @@
 #include "include/input.h"
 
 int main() {
-    InitWindow(WINDOWWIDTH, WINDOWHEIGHT, "Chess");
-    SetWindowState(FLAG_VSYNC_HINT);
-
-    // first player will be white
-    color = true;
-
-    createBoard();
-    createPieces();
+    setup();
 
     while (!WindowShouldClose()) {
         input();
@@ -27,6 +20,7 @@ int main() {
     }
 
     pieceCleanUp();
+    CloseWindow();
 
     return 0;
 }

@@ -22,7 +22,7 @@ void input() {
             }
         }
 
-        getVaildMoves((int) selectedPiece.x, (int) selectedPiece.y);
+        getValidMoves((int) selectedPiece.x, (int) selectedPiece.y);
     }
 
     // moves piece based on where the mouse is
@@ -36,7 +36,7 @@ void input() {
     if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
-                if (chessBoard[x][y].isVaild && CheckCollisionPointRec(GetMousePosition(), chessBoard[x][y].rectangle)) {
+                if (chessBoard[x][y].isValid && CheckCollisionPointRec(GetMousePosition(), chessBoard[x][y].rectangle)) {
                     if (chessBoard[x][y].piece.type == ROOK && chessBoard[x][y].piece.color == color) {
                         // rook to the right
                         if (x > 4) {
@@ -107,8 +107,8 @@ void input() {
 
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
-                if (chessBoard[x][y].isVaild) {
-                    chessBoard[x][y].isVaild = false;
+                if (chessBoard[x][y].isValid) {
+                    chessBoard[x][y].isValid = false;
                 }
             }
         }

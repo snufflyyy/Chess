@@ -34,115 +34,133 @@ void createPieces() {
     ImageResize(&blackQueen, TILESIZE, TILESIZE);
     ImageResize(&blackKing, TILESIZE, TILESIZE);
 
-    // white will always be first, thats why these values are hard coded
-
-    // white pawn
     for (int x = 0; x < 8; x++) {
-        chessBoard[x][6].piece.type = PAWN;
-        chessBoard[x][6].piece.color = true;
-        chessBoard[x][6].piece.texture = LoadTextureFromImage(whitePawn);
+        for (int y = 0; y < 8; y++) {
+            // white pawn
+            if (chessBoard[x][y].number == 2) {
+                chessBoard[x][y].piece.type = PAWN;
+                chessBoard[x][y].piece.color = true;
+                chessBoard[x][y].piece.texture = LoadTextureFromImage(whitePawn);
+            }
+
+            if (chessBoard[x][y].number == 1) {
+                // white rooks
+                if (chessBoard[x][y].letter == 'A') { // left
+                    chessBoard[x][y].piece.type = ROOK;
+                    chessBoard[x][y].piece.color = true;
+                    chessBoard[x][y].piece.texture = LoadTextureFromImage(whiteRook);
+                }
+
+                if (chessBoard[x][y].letter == 'H') { // right
+                    chessBoard[x][y].piece.type = ROOK;
+                    chessBoard[x][y].piece.color = true;
+                    chessBoard[x][y].piece.texture = LoadTextureFromImage(whiteRook);
+                }
+
+                // white knights
+                if (chessBoard[x][y].letter == 'B') { // left
+                    chessBoard[x][y].piece.type = KNIGHT;
+                    chessBoard[x][y].piece.color = true;
+                    chessBoard[x][y].piece.texture = LoadTextureFromImage(whiteKnight);
+                }
+
+                if (chessBoard[x][y].letter == 'G') { // right
+                    chessBoard[x][y].piece.type = KNIGHT;
+                    chessBoard[x][y].piece.color = true;
+                    chessBoard[x][y].piece.texture = LoadTextureFromImage(whiteKnight);
+                }
+
+                // white bishop
+                if (chessBoard[x][y].letter == 'C') { // left
+                    chessBoard[x][y].piece.type = BISHOP;
+                    chessBoard[x][y].piece.color = true;
+                    chessBoard[x][y].piece.texture = LoadTextureFromImage(whiteBishop);
+                }
+
+                if (chessBoard[x][y].letter == 'F') { // right
+                    chessBoard[x][y].piece.type = BISHOP;
+                    chessBoard[x][y].piece.color = true;
+                    chessBoard[x][y].piece.texture = LoadTextureFromImage(whiteBishop);
+                }
+
+                // white queen
+                if (chessBoard[x][y].letter == 'D') {
+                    chessBoard[x][y].piece.type = QUEEN;
+                    chessBoard[x][y].piece.color = true;
+                    chessBoard[x][y].piece.texture = LoadTextureFromImage(whiteQueen);
+                }
+
+                // white king
+                if (chessBoard[x][y].letter == 'E') {
+                    chessBoard[x][y].piece.type = KING;
+                    chessBoard[x][y].piece.color = true;
+                    chessBoard[x][y].piece.texture = LoadTextureFromImage(whiteKing);
+                }
+            }
+
+            // black pawns
+            if (chessBoard[x][y].number == 7) {
+                chessBoard[x][y].piece.type = PAWN;
+                chessBoard[x][y].piece.color = false;
+                chessBoard[x][y].piece.texture = LoadTextureFromImage(blackPawn);
+            }
+
+            if (chessBoard[x][y].number == 8) {
+                // black rooks
+                if (chessBoard[x][y].letter == 'A') { // left
+                    chessBoard[x][y].piece.type = ROOK;
+                    chessBoard[x][y].piece.color = false;
+                    chessBoard[x][y].piece.texture = LoadTextureFromImage(blackRook);
+                }
+
+                if (chessBoard[x][y].letter == 'H') { // right
+                    chessBoard[x][y].piece.type = ROOK;
+                    chessBoard[x][y].piece.color = false;
+                    chessBoard[x][y].piece.texture = LoadTextureFromImage(blackRook);
+                }
+
+                // black knights
+                if (chessBoard[x][y].letter == 'B') { // left
+                    chessBoard[x][y].piece.type = KNIGHT;
+                    chessBoard[x][y].piece.color = false;
+                    chessBoard[x][y].piece.texture = LoadTextureFromImage(blackKnight);
+                }
+
+                if (chessBoard[x][y].letter == 'G') { // right
+                    chessBoard[x][y].piece.type = KNIGHT;
+                    chessBoard[x][y].piece.color = false;
+                    chessBoard[x][y].piece.texture = LoadTextureFromImage(blackKnight);
+                }
+
+                // black bishop
+                if (chessBoard[x][y].letter == 'C') { // left
+                    chessBoard[x][y].piece.type = BISHOP;
+                    chessBoard[x][y].piece.color = false;
+                    chessBoard[x][y].piece.texture = LoadTextureFromImage(blackBishop);
+                }
+
+                if (chessBoard[x][y].letter == 'F') { // right
+                    chessBoard[x][y].piece.type = BISHOP;
+                    chessBoard[x][y].piece.color = false;
+                    chessBoard[x][y].piece.texture = LoadTextureFromImage(blackBishop);
+                }
+
+                // black queen
+                if (chessBoard[x][y].letter == 'D') {
+                    chessBoard[x][y].piece.type = QUEEN;
+                    chessBoard[x][y].piece.color = false;
+                    chessBoard[x][y].piece.texture = LoadTextureFromImage(blackQueen);
+                }
+
+                // black king
+                if (chessBoard[x][y].letter == 'E') {
+                    chessBoard[x][y].piece.type = KING;
+                    chessBoard[x][y].piece.color = false;
+                    chessBoard[x][y].piece.texture = LoadTextureFromImage(blackKing);
+                }
+            }
+        }
     }
-
-    // white rooks
-
-    // left
-    chessBoard[0][7].piece.type = ROOK;
-    chessBoard[0][7].piece.color = true;
-    chessBoard[0][7].piece.texture = LoadTextureFromImage(whiteRook);
-
-    // right
-    chessBoard[7][7].piece.type = ROOK;
-    chessBoard[7][7].piece.color = true;
-    chessBoard[7][7].piece.texture = LoadTextureFromImage(whiteRook);
-
-    // white knights
-
-    // left
-    chessBoard[1][7].piece.type = KNIGHT;
-    chessBoard[1][7].piece.color = true;
-    chessBoard[1][7].piece.texture = LoadTextureFromImage(whiteKnight);
-
-    // right
-    chessBoard[6][7].piece.type = KNIGHT;
-    chessBoard[6][7].piece.color = true;
-    chessBoard[6][7].piece.texture = LoadTextureFromImage(whiteKnight);
-
-    // white bishops
-
-    // left
-    chessBoard[2][7].piece.type = BISHOP;
-    chessBoard[2][7].piece.color = true;
-    chessBoard[2][7].piece.texture = LoadTextureFromImage(whiteBishop);
-
-    // right
-    chessBoard[5][7].piece.type = BISHOP;
-    chessBoard[5][7].piece.color = true;
-    chessBoard[5][7].piece.texture = LoadTextureFromImage(whiteBishop);
-
-    // white queen
-    chessBoard[3][7].piece.type = QUEEN;
-    chessBoard[3][7].piece.color = true;
-    chessBoard[3][7].piece.texture = LoadTextureFromImage(whiteQueen);
-
-    // white king
-    chessBoard[4][7].piece.type = KING;
-    chessBoard[4][7].piece.color = true;
-    chessBoard[4][7].piece.texture = LoadTextureFromImage(whiteKing);
-
-    // black pieces
-
-    // black pawn
-    for (int x = 0; x < 8; x++) {
-        chessBoard[x][1].piece.type = PAWN;
-        chessBoard[x][1].piece.color = false;
-        chessBoard[x][1].piece.texture = LoadTextureFromImage(blackPawn);
-    }
-
-    // black rooks
-
-    // left
-    chessBoard[0][0].piece.type = ROOK;
-    chessBoard[0][0].piece.color = false;
-    chessBoard[0][0].piece.texture = LoadTextureFromImage(blackRook);
-
-    // right
-    chessBoard[7][0].piece.type = ROOK;
-    chessBoard[7][0].piece.color = false;
-    chessBoard[7][0].piece.texture = LoadTextureFromImage(blackRook);
-
-    // black knights
-
-    // left
-    chessBoard[1][0].piece.type = KNIGHT;
-    chessBoard[1][0].piece.color = false;
-    chessBoard[1][0].piece.texture = LoadTextureFromImage(blackKnight);
-
-    // right
-    chessBoard[6][0].piece.type = KNIGHT;
-    chessBoard[6][0].piece.color = false;
-    chessBoard[6][0].piece.texture = LoadTextureFromImage(blackKnight);
-
-    // black bishops
-
-    // left
-    chessBoard[2][0].piece.type = BISHOP;
-    chessBoard[2][0].piece.color = false;
-    chessBoard[2][0].piece.texture = LoadTextureFromImage(blackBishop);
-
-    // right
-    chessBoard[5][0].piece.type = BISHOP;
-    chessBoard[5][0].piece.color = false;
-    chessBoard[5][0].piece.texture = LoadTextureFromImage(blackBishop);
-
-    // white queen
-    chessBoard[3][0].piece.type = QUEEN;
-    chessBoard[3][0].piece.color = false;
-    chessBoard[3][0].piece.texture = LoadTextureFromImage(blackQueen);
-
-    // white king
-    chessBoard[4][0].piece.type = KING;
-    chessBoard[4][0].piece.color = false;
-    chessBoard[4][0].piece.texture = LoadTextureFromImage(blackKing);
 
     // clean up
     UnloadImage(whitePawn);
@@ -160,60 +178,100 @@ void createPieces() {
     UnloadImage(blackKing);
 }
 
-void getVaildMoves(int x, int y) {
+void getValidMoves(int x, int y) {
     switch (chessBoard[x][y].piece.type) {
         case NONE: /** do nothing :) **/ break;
         case PAWN:
-            // normal moves
+            if (isWhiteCheck || isBlackCheck) {
+                // normal moves
 
-            // first move
-            if (chessBoard[x][y].piece.moves == 0) {
-                chessBoard[x][y - 1].isVaild = true;
-                chessBoard[x][y - 2].isVaild = true;
-            } else if (chessBoard[x][y - 1].piece.type == NONE) { // after first move
-                chessBoard[x][y - 1].isVaild = true;
-            }
-            
-            // capture
-
-            // right
-            if (chessBoard[x + 1][y - 1].piece.color != color && chessBoard[x + 1][y - 1].piece.type != NONE) {
-                chessBoard[x + 1][y - 1].isVaild = true;
-            }
-            // left
-            if (chessBoard[x - 1][y - 1].piece.color != color && chessBoard[x - 1][y - 1].piece.type != NONE) {
-                chessBoard[x - 1][y - 1].isVaild = true;
-            }
-
-            // en passant
-
-            // left
-            if (chessBoard[x - 1][y].piece.type == PAWN 
-                && chessBoard[x - 1][y].piece.color != color 
-                && chessBoard[x - 1][y].piece.canEnPassant
-                && (x == 3 || x == 4)) 
-                {        
-                    chessBoard[x - 1][y - 1].isVaild = true;    
+                // first move
+                if (chessBoard[x][y].piece.moves == 0 && checkBoard[x][y].isValid) {
+                    chessBoard[x][y - 1].isValid = true;
+                    chessBoard[x][y - 2].isValid = true;
+                } else if (chessBoard[x][y - 1].piece.type == NONE && checkBoard[x][y - 1].isValid) { // after first move
+                    chessBoard[x][y - 1].isValid = true;
                 }
-            // right
-            if (chessBoard[x + 1][y].piece.type == PAWN 
-                && chessBoard[x + 1][y].piece.color != color 
-                && chessBoard[x + 1][y].piece.canEnPassant
-                && (x == 3 || x == 4)) 
-                {        
-                    chessBoard[x + 1][y - 1].isVaild = true;    
-                }                
 
+                // capture
 
+                // right
+                if (chessBoard[x + 1][y - 1].piece.color != color && chessBoard[x + 1][y - 1].piece.type != NONE && checkBoard[x + 1][y - 1].isValid) {
+                    chessBoard[x + 1][y - 1].isValid = true;
+                }
+                // left
+                if (chessBoard[x - 1][y - 1].piece.color != color && chessBoard[x - 1][y - 1].piece.type != NONE && checkBoard[x - 1][y - 1].isValid) {
+                    chessBoard[x - 1][y - 1].isValid = true;
+                }
+
+                // en passant (--* needed to do check thing *--)
+
+                // left
+                if (chessBoard[x - 1][y].piece.type == PAWN
+                    && chessBoard[x - 1][y].piece.color != color
+                    && chessBoard[x - 1][y].piece.canEnPassant
+                    && (x == 3 || x == 4))
+                {
+                    chessBoard[x - 1][y - 1].isValid = true;
+                }
+                // right
+                if (chessBoard[x + 1][y].piece.type == PAWN
+                    && chessBoard[x + 1][y].piece.color != color
+                    && chessBoard[x + 1][y].piece.canEnPassant
+                    && (x == 3 || x == 4))
+                {
+                    chessBoard[x + 1][y - 1].isValid = true;
+                }
+            } else {
+                // normal moves
+
+                // first move
+                if (chessBoard[x][y].piece.moves == 0) {
+                    chessBoard[x][y - 1].isValid = true;
+                    chessBoard[x][y - 2].isValid = true;
+                } else if (chessBoard[x][y - 1].piece.type == NONE) { // after first move
+                    chessBoard[x][y - 1].isValid = true;
+                }
+
+                // capture
+
+                // right
+                if (chessBoard[x + 1][y - 1].piece.color != color && chessBoard[x + 1][y - 1].piece.type != NONE) {
+                    chessBoard[x + 1][y - 1].isValid = true;
+                }
+                // left
+                if (chessBoard[x - 1][y - 1].piece.color != color && chessBoard[x - 1][y - 1].piece.type != NONE) {
+                    chessBoard[x - 1][y - 1].isValid = true;
+                }
+
+                // en passant
+
+                // left
+                if (chessBoard[x - 1][y].piece.type == PAWN
+                    && chessBoard[x - 1][y].piece.color != color
+                    && chessBoard[x - 1][y].piece.canEnPassant
+                    && (x == 3 || x == 4))
+                {
+                    chessBoard[x - 1][y - 1].isValid = true;
+                }
+                // right
+                if (chessBoard[x + 1][y].piece.type == PAWN
+                    && chessBoard[x + 1][y].piece.color != color
+                    && chessBoard[x + 1][y].piece.canEnPassant
+                    && (x == 3 || x == 4))
+                {
+                    chessBoard[x + 1][y - 1].isValid = true;
+                }
+            }
         break;
         case ROOK:
             // up
             for (int i = y - 1; i >= 0; i--) {
                 if (chessBoard[x][i].piece.type == NONE) {
-                    chessBoard[x][i].isVaild = true;
+                    chessBoard[x][i].isValid = true;
                 } else {
                     if (chessBoard[x][i].piece.color != color) {
-                        chessBoard[x][i].isVaild = true;
+                        chessBoard[x][i].isValid = true;
                     }
                     break;
                 }
@@ -221,10 +279,10 @@ void getVaildMoves(int x, int y) {
             // down
             for (int i = y + 1; i < 8; i++) {
                 if (chessBoard[x][i].piece.type == NONE) {
-                    chessBoard[x][i].isVaild = true;
+                    chessBoard[x][i].isValid = true;
                 } else {
                     if (chessBoard[x][i].piece.color != color) {
-                        chessBoard[x][i].isVaild = true;
+                        chessBoard[x][i].isValid = true;
                     }
                     break;
                 }
@@ -233,10 +291,10 @@ void getVaildMoves(int x, int y) {
             // left
             for (int i = x - 1; i >= 0; i--) {
                 if (chessBoard[i][y].piece.type == NONE) {
-                    chessBoard[i][y].isVaild = true;
+                    chessBoard[i][y].isValid = true;
                 } else {
                     if (chessBoard[i][y].piece.color != color) {
-                        chessBoard[i][y].isVaild = true;
+                        chessBoard[i][y].isValid = true;
                     }
                     break;
                 }
@@ -245,10 +303,10 @@ void getVaildMoves(int x, int y) {
             // right
             for (int i = x + 1; i < 8; i++) {
                 if (chessBoard[i][y].piece.type == NONE) {
-                    chessBoard[i][y].isVaild = true;
+                    chessBoard[i][y].isValid = true;
                 } else {
                     if (chessBoard[i][y].piece.color != color) {
-                        chessBoard[i][y].isVaild = true;
+                        chessBoard[i][y].isValid = true;
                     }
                     break;
                 }
@@ -257,81 +315,128 @@ void getVaildMoves(int x, int y) {
         case KNIGHT:
             // one left two up
             if (x - 1 >= 0 && y - 2 >= 0 && (chessBoard[x - 1][y - 2].piece.type == NONE || chessBoard[x - 1][y - 2].piece.color != color)) {
-                chessBoard[x - 1][y - 2].isVaild = true;
+                chessBoard[x - 1][y - 2].isValid = true;
             }
             // one right two up
             if (x + 1 < 8 && y - 2 >= 0 && (chessBoard[x + 1][y - 2].piece.type == NONE || chessBoard[x + 1][y - 2].piece.color != color)) {
-                chessBoard[x + 1][y - 2].isVaild = true;
+                chessBoard[x + 1][y - 2].isValid = true;
             }
             // one left two down
             if (x - 1 >= 0 && y + 2 < 8 && (chessBoard[x - 1][y + 2].piece.type == NONE || chessBoard[x - 1][y + 2].piece.color != color)) {
-                chessBoard[x - 1][y + 2].isVaild = true;
+                chessBoard[x - 1][y + 2].isValid = true;
             }
             // one right two down
             if (x + 1 < 8 && y + 2 < 8 && (chessBoard[x + 1][y + 2].piece.type == NONE || chessBoard[x + 1][y + 2].piece.color != color))  {
-                chessBoard[x + 1][y + 2].isVaild = true;
+                chessBoard[x + 1][y + 2].isValid = true;
             }
 
             // two left one up
             if (x - 2 >= 0 && y - 1 >= 0 && (chessBoard[x - 2][y - 1].piece.type == NONE || chessBoard[x - 2][y - 1].piece.color != color)) {
-                chessBoard[x - 2][y - 1].isVaild = true;
+                chessBoard[x - 2][y - 1].isValid = true;
             }
             // two right one up
             if (x + 2 < 8 && y - 1 >= 0 && (chessBoard[x + 2][y - 1].piece.type == NONE || chessBoard[x + 2][y - 1].piece.color != color)) {
-                chessBoard[x + 2][y - 1].isVaild = true;
+                chessBoard[x + 2][y - 1].isValid = true;
             }
             // two left one down
             if (x - 2 >= 0 && y + 1 < 8 && (chessBoard[x - 2][y + 1].piece.type == NONE || chessBoard[x - 2][y + 1].piece.color != color)) {
-                chessBoard[x - 2][y + 1].isVaild = true;
+                chessBoard[x - 2][y + 1].isValid = true;
             }
             // two right one down                            
             if (x + 2 < 8 && y + 1 < 8 && (chessBoard[x + 2][y + 1].piece.type == NONE || chessBoard[x + 2][y + 1].piece.color != color)) {
-                chessBoard[x + 2][y + 1].isVaild = true;
+                chessBoard[x + 2][y + 1].isValid = true;
             }
         break;    
         case BISHOP:
-            // right up
-            for (int i = 1; x + i < 8 && y - i >= 0; i++) {
-                if (chessBoard[x + i][y - i].piece.type == NONE) {
-                    chessBoard[x + i][y - i].isVaild = true;
-                } else {
-                    if (chessBoard[x + i][y - i].piece.color != color) {
-                        chessBoard[x + i][y - i].isVaild = true;
+            if (isBlackCheck || isWhiteCheck) {
+                // right up
+                for (int i = 1; x + i < 8 && y - i >= 0; i++) {
+                    if (chessBoard[x + i][y - i].piece.type == NONE && checkBoard[x + i][y - i].isValid) {
+                        chessBoard[x + i][y - i].isValid = true;
+                    } else {
+                        if (chessBoard[x + i][y - i].piece.color != color && checkBoard[x + i][y - i].isValid) {
+                            chessBoard[x + i][y - i].isValid = true;
+                        }
+                        break;
                     }
-                    break;
                 }
-            }
-            // right down
-            for (int i = 1; x + i < 8 && y + i < 8; i++) {
-                if (chessBoard[x + i][y + i].piece.type == NONE) {
-                    chessBoard[x + i][y + i].isVaild = true;
-                } else {
-                    if (chessBoard[x + i][y + i].piece.color != color) {
-                        chessBoard[x + i][y + i].isVaild = true;
+                // right down
+                for (int i = 1; x + i < 8 && y + i < 8; i++) {
+                    if (chessBoard[x + i][y + i].piece.type == NONE && checkBoard[x + i][y + i].isValid) {
+                        chessBoard[x + i][y + i].isValid = true;
+                    } else {
+                        if (chessBoard[x + i][y + i].piece.color != color && checkBoard[x + i][y + i].isValid) {
+                            chessBoard[x + i][y + i].isValid = true;
+                        }
+                        break;
                     }
-                    break;
                 }
-            }
-            // left up
-            for (int i = 1; x - i >= 0 && y - i >= 0; i++) {
-                if (chessBoard[x - i][y - i].piece.type == NONE) {
-                    chessBoard[x - i][y - i].isVaild = true;
-                } else {
-                    if (chessBoard[x - i][y - i].piece.color != color) {
-                        chessBoard[x - i][y - i].isVaild = true;
+                // left up
+                for (int i = 1; x - i >= 0 && y - i >= 0; i++) {
+                    if (chessBoard[x - i][y - i].piece.type == NONE && checkBoard[x - i][y - i].isValid) {
+                        chessBoard[x - i][y - i].isValid = true;
+                    } else {
+                        if (chessBoard[x - i][y - i].piece.color != color && checkBoard[x - i][y - i].isValid) {
+                            chessBoard[x - i][y - i].isValid = true;
+                        }
+                        break;
                     }
-                    break;
                 }
-            }
-            // left down
-            for (int i = 1; x - i >= 0 && y + i < 8; i++) {
-                if (chessBoard[x - i][y + i].piece.type == NONE) {
-                    chessBoard[x - i][y + i].isVaild = true;
-                } else {
-                    if (chessBoard[x - i][y + i].piece.color != color) {
-                        chessBoard[x - i][y + i].isVaild = true;
+                // left down
+                for (int i = 1; x - i >= 0 && y + i < 8; i++) {
+                    if (chessBoard[x - i][y + i].piece.type == NONE && checkBoard[x - i][y + i].isValid) {
+                        chessBoard[x - i][y + i].isValid = true;
+                    } else {
+                        if (chessBoard[x - i][y + i].piece.color != color && checkBoard[x - i][y + i].isValid) {
+                            chessBoard[x - i][y + i].isValid = true;
+                        }
+                        break;
                     }
-                    break;
+                }
+            } else {
+                // right up
+                for (int i = 1; x + i < 8 && y - i >= 0; i++) {
+                    if (chessBoard[x + i][y - i].piece.type == NONE) {
+                        chessBoard[x + i][y - i].isValid = true;
+                    } else {
+                        if (chessBoard[x + i][y - i].piece.color != color) {
+                            chessBoard[x + i][y - i].isValid = true;
+                        }
+                        break;
+                    }
+                }
+                // right down
+                for (int i = 1; x + i < 8 && y + i < 8; i++) {
+                    if (chessBoard[x + i][y + i].piece.type == NONE) {
+                        chessBoard[x + i][y + i].isValid = true;
+                    } else {
+                        if (chessBoard[x + i][y + i].piece.color != color) {
+                            chessBoard[x + i][y + i].isValid = true;
+                        }
+                        break;
+                    }
+                }
+                // left up
+                for (int i = 1; x - i >= 0 && y - i >= 0; i++) {
+                    if (chessBoard[x - i][y - i].piece.type == NONE) {
+                        chessBoard[x - i][y - i].isValid = true;
+                    } else {
+                        if (chessBoard[x - i][y - i].piece.color != color) {
+                            chessBoard[x - i][y - i].isValid = true;
+                        }
+                        break;
+                    }
+                }
+                // left down
+                for (int i = 1; x - i >= 0 && y + i < 8; i++) {
+                    if (chessBoard[x - i][y + i].piece.type == NONE) {
+                        chessBoard[x - i][y + i].isValid = true;
+                    } else {
+                        if (chessBoard[x - i][y + i].piece.color != color) {
+                            chessBoard[x - i][y + i].isValid = true;
+                        }
+                        break;
+                    }
                 }
             }
         break; 
@@ -339,10 +444,10 @@ void getVaildMoves(int x, int y) {
             // up
             for (int i = y - 1; i >= 0; i--) {
                 if (chessBoard[x][i].piece.type == NONE) {
-                    chessBoard[x][i].isVaild = true;
+                    chessBoard[x][i].isValid = true;
                 } else {
                     if (chessBoard[x][i].piece.color != color) {
-                        chessBoard[x][i].isVaild = true;
+                        chessBoard[x][i].isValid = true;
                     }
                     break;
                 }
@@ -350,10 +455,10 @@ void getVaildMoves(int x, int y) {
             // down
             for (int i = y + 1; i < 8; i++) {
                 if (chessBoard[x][i].piece.type == NONE) {
-                    chessBoard[x][i].isVaild = true;
+                    chessBoard[x][i].isValid = true;
                 } else {
                     if (chessBoard[x][i].piece.color != color) {
-                        chessBoard[x][i].isVaild = true;
+                        chessBoard[x][i].isValid = true;
                     }
                     break;
                 }
@@ -361,10 +466,10 @@ void getVaildMoves(int x, int y) {
             // left
             for (int i = x - 1; i >= 0; i--) {
                 if (chessBoard[i][y].piece.type == NONE) {
-                    chessBoard[i][y].isVaild = true;
+                    chessBoard[i][y].isValid = true;
                 } else {
                     if (chessBoard[i][y].piece.color != color) {
-                        chessBoard[i][y].isVaild = true;
+                        chessBoard[i][y].isValid = true;
                     }
                     break;
                 }
@@ -372,10 +477,10 @@ void getVaildMoves(int x, int y) {
             // right
             for (int i = x + 1; i < 8; i++) {
                 if (chessBoard[i][y].piece.type == NONE) {
-                    chessBoard[i][y].isVaild = true;
+                    chessBoard[i][y].isValid = true;
                 } else {
                     if (chessBoard[i][y].piece.color != color) {
-                        chessBoard[i][y].isVaild = true;
+                        chessBoard[i][y].isValid = true;
                     }
                     break;
                 }
@@ -383,10 +488,10 @@ void getVaildMoves(int x, int y) {
             // right up
             for (int i = 1; x + i < 8 && y - i >= 0; i++) {
                 if (chessBoard[x + i][y - i].piece.type == NONE) {
-                    chessBoard[x + i][y - i].isVaild = true;
+                    chessBoard[x + i][y - i].isValid = true;
                 } else {
                     if (chessBoard[x + i][y - i].piece.color != color) {
-                        chessBoard[x + i][y - i].isVaild = true;
+                        chessBoard[x + i][y - i].isValid = true;
                     }
                     break;
                 }
@@ -394,10 +499,10 @@ void getVaildMoves(int x, int y) {
             // right down
             for (int i = 1; x + i < 8 && y + i < 8; i++) {
                 if (chessBoard[x + i][y + i].piece.type == NONE) {
-                    chessBoard[x + i][y + i].isVaild = true;
+                    chessBoard[x + i][y + i].isValid = true;
                 } else {
                     if (chessBoard[x + i][y + i].piece.color != color) {
-                        chessBoard[x + i][y + i].isVaild = true;
+                        chessBoard[x + i][y + i].isValid = true;
                     }
                     break;
                 }
@@ -405,10 +510,10 @@ void getVaildMoves(int x, int y) {
             // left up
             for (int i = 1; x - i >= 0 && y - i >= 0; i++) {
                 if (chessBoard[x - i][y - i].piece.type == NONE) {
-                    chessBoard[x - i][y - i].isVaild = true;
+                    chessBoard[x - i][y - i].isValid = true;
                 } else {
                     if (chessBoard[x - i][y - i].piece.color != color) {
-                        chessBoard[x - i][y - i].isVaild = true;
+                        chessBoard[x - i][y - i].isValid = true;
                     }
                     break;
                 }
@@ -416,10 +521,10 @@ void getVaildMoves(int x, int y) {
             // left down
             for (int i = 1; x - i >= 0 && y + i < 8; i++) {
                 if (chessBoard[x - i][y + i].piece.type == NONE) {
-                    chessBoard[x - i][y + i].isVaild = true;
+                    chessBoard[x - i][y + i].isValid = true;
                 } else {
                     if (chessBoard[x - i][y + i].piece.color != color) {
-                        chessBoard[x - i][y + i].isVaild = true;
+                        chessBoard[x - i][y + i].isValid = true;
                     }
                     break;
                 }
@@ -432,8 +537,8 @@ void getVaildMoves(int x, int y) {
                 if (chessBoard[x][y].piece.type == KING && chessBoard[x][y].piece.moves == 0) {
                     // left
                     for (int i = x - 1; i >= 0; i--) {
-                        if (chessBoard[i][y].piece.type == ROOK && !checkBoard[i][y].isVaild) {
-                            chessBoard[i][y].isVaild = true;
+                        if (chessBoard[i][y].piece.type == ROOK && !checkBoard[i][y].isValid) {
+                            chessBoard[i][y].isValid = true;
                             break;
                         } else if (chessBoard[i][y].piece.type != NONE) {
                             break;
@@ -442,8 +547,8 @@ void getVaildMoves(int x, int y) {
 
                     // right
                     for (int i = x + 1; i < 8; i++) {
-                        if (chessBoard[i][y].piece.type == ROOK && !checkBoard[i][y].isVaild) {
-                            chessBoard[i][y].isVaild = true;
+                        if (chessBoard[i][y].piece.type == ROOK && !checkBoard[i][y].isValid) {
+                            chessBoard[i][y].isValid = true;
                             break;
                         } else if (chessBoard[i][y].piece.type != NONE) {
                             break;
@@ -454,41 +559,55 @@ void getVaildMoves(int x, int y) {
                 // normal king movement
 
                 // up
-                if (y != 0 && (chessBoard[x][y - 1].piece.type == NONE || chessBoard[x][y - 1].piece.color != color) && !checkBoard[x][y - 1].isVaild) {
-                    chessBoard[x][y - 1].isVaild = true;
+                if (y != 0 && (chessBoard[x][y - 1].piece.type == NONE || chessBoard[x][y - 1].piece.color != color) && !checkBoard[x][y - 1].isValid) {
+                    chessBoard[x][y - 1].isValid = true;
                 }
                 // up right
-                if (y != 0 && x != 7 && (chessBoard[x + 1][y - 1].piece.type == NONE || chessBoard[x + 1][y - 1].piece.color != color) && !checkBoard[x + 1][y - 1].isVaild) {
-                    chessBoard[x + 1][y - 1].isVaild = true;
+                if (y != 0 && x != 7 && (chessBoard[x + 1][y - 1].piece.type == NONE || chessBoard[x + 1][y - 1].piece.color != color) && !checkBoard[x + 1][y - 1].isValid) {
+                    chessBoard[x + 1][y - 1].isValid = true;
                 }
                 // right
-                if (x != 7 && (chessBoard[x + 1][y].piece.type == NONE || chessBoard[x + 1][y].piece.color != color) && !checkBoard[x + 1][y].isVaild) {
-                    chessBoard[x + 1][y].isVaild = true;
+                if (x != 7 && (chessBoard[x + 1][y].piece.type == NONE || chessBoard[x + 1][y].piece.color != color) && !checkBoard[x + 1][y].isValid) {
+                    chessBoard[x + 1][y].isValid = true;
                 }
                 // down right
-                if (y != 7 && x != 7 && (chessBoard[x + 1][y + 1].piece.type == NONE || chessBoard[x + 1][y + 1].piece.color != color) && !checkBoard[x + 1][y + 1].isVaild) {
-                    chessBoard[x + 1][y + 1].isVaild = true;
+                if (y != 7 && x != 7 && (chessBoard[x + 1][y + 1].piece.type == NONE || chessBoard[x + 1][y + 1].piece.color != color) && !checkBoard[x + 1][y + 1].isValid) {
+                    chessBoard[x + 1][y + 1].isValid = true;
                 }
                 // down
-                if (y != 7 && (chessBoard[x][y + 1].piece.type == NONE || chessBoard[x][y + 1].piece.color != color) && !checkBoard[x][y - 1].isVaild) {
-                    chessBoard[x][y + 1].isVaild = true;
+                if (y != 7 && (chessBoard[x][y + 1].piece.type == NONE || chessBoard[x][y + 1].piece.color != color) && !checkBoard[x][y - 1].isValid) {
+                    chessBoard[x][y + 1].isValid = true;
                 }
                 // down left
-                if (y != 7 && x != 0 && (chessBoard[x - 1][y + 1].piece.type == NONE || chessBoard[x - 1][y + 1].piece.color != color) && !checkBoard[x - 1][y + 1].isVaild) {
-                    chessBoard[x - 1][y + 1].isVaild = true;
+                if (y != 7 && x != 0 && (chessBoard[x - 1][y + 1].piece.type == NONE || chessBoard[x - 1][y + 1].piece.color != color) && !checkBoard[x - 1][y + 1].isValid) {
+                    chessBoard[x - 1][y + 1].isValid = true;
                 }
                 // left
-                if (x != 0 && (chessBoard[x - 1][y].piece.type == NONE || chessBoard[x - 1][y].piece.color != color) && !checkBoard[x - 1][y].isVaild) {
-                    chessBoard[x - 1][y].isVaild = true;
+                if (x != 0 && (chessBoard[x - 1][y].piece.type == NONE || chessBoard[x - 1][y].piece.color != color) && !checkBoard[x - 1][y].isValid) {
+                    chessBoard[x - 1][y].isValid = true;
                 }
                 // left up    
-                if (y != 0 && x != 0 && (chessBoard[x - 1][y - 1].piece.type == NONE || chessBoard[x - 1][y - 1].piece.color != color) && !checkBoard[x - 1][y - 1].isVaild) {
-                    chessBoard[x - 1][y - 1].isVaild = true;
+                if (y != 0 && x != 0 && (chessBoard[x - 1][y - 1].piece.type == NONE || chessBoard[x - 1][y - 1].piece.color != color) && !checkBoard[x - 1][y - 1].isValid) {
+                    chessBoard[x - 1][y - 1].isValid = true;
                 } 
             }
         }
         break;
     }
+}
+
+bool isValidMove(int x, int y, int x2, int y2) {
+    getValidMoves(x, y);
+
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            if (chessBoard[x2][y2].isValid) {
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 void drawPieces() {

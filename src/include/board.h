@@ -5,7 +5,9 @@
 #include "piece.h"
 
 typedef struct {
-    bool isVaild;
+    char letter;
+    int number;
+    bool isValid;
     Piece piece;
     Rectangle rectangle;
     Color color;

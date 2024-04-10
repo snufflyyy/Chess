@@ -22,7 +22,8 @@ typedef struct {
     bool canEnPassant;
 } Piece;
 
-void getVaildMoves(int x, int y);
+void getValidMoves(int x, int y);
+bool isValidMove(int x, int y, int x2, int y2);
 void createPieces();
 void drawPieces();
 void pieceCleanUp();

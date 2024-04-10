@@ -3,8 +3,8 @@
 #include <raylib.h>
 #include "board.h"
 
-#define WINDOWWIDTH 800 
-#define WINDOWHEIGHT 800
+#define WINDOWWIDTH 600
+#define WINDOWHEIGHT 600
 
 // finds the correct tile size based on the
 // window sizes listed above
@@ -19,5 +19,7 @@ extern bool isWhiteCheck;
 extern bool isBlackCheck;
 
 extern Tile checkBoard[8][8];
+
+void setup();
 
 #endif //CHESS_GAME_H
