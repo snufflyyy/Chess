@@ -1,5 +1,5 @@
 #include "include/board.h"
-#include "include/variables.h"
+#include "include/game.h"
 #include <stdio.h>
 
 // board tile color
@@ -7,6 +7,8 @@ const Color whiteColor = {212, 212, 212, 255};
 const Color blackColor = {148, 148, 148, 255};
 
 Tile chessBoard[8][8];
+Tile checkBoard[8][8];
+
 Tile tempBoard[8][8];
 
 // creates the game board
@@ -49,6 +51,37 @@ void createBoard() {
     }
 }
 
+void checkForCheck() {
+    isWhiteCheck = false;
+    isBlackCheck = false;
+
+    for (int x = 0; x < 8; x++) {
+        for (int y = 0; y < 8; y++) {
+            if (chessBoard[x][y].piece.color == color && chessBoard[x][y].piece.type != KING) {
+                getVaildMoves(x, y);
+            }
+        }
+    }
+
+    for (int x = 0; x < 8; x++) {
+        for (int y = 0; y < 8; y++) {
+            if (chessBoard[x][y].piece.type == KING && chessBoard[x][y].isVaild) {
+                if (chessBoard[x][y].piece.color) {
+                    isWhiteCheck = true;
+                } else {
+                    isBlackCheck = true;
+                }
+
+                for (int x2 = 0; x2 < 8; x2++) {
+                    for (int y2 = 0; y2 < 8; y2++) {
+                        checkBoard[x2][y2].isVaild = chessBoard[x2][y2].isVaild;
+                    }
+                }
+            }
+        }
+    } 
+}
+
 void rotateBoard() {
     // create temp board
     for (int x = 0; x < 8; x++) {
@@ -70,21 +103,26 @@ void rotateBoard() {
 void drawBoard() {
     for (int x = 0; x < 8; x++) {
         for (int y = 0; y < 8; y++) {
-            if (chessBoard[x][y].isVaild == false) {
-                DrawRectangleRec(chessBoard[x][y].rectangle, chessBoard[x][y].color);
-            } else {
-                Color temp = chessBoard[x][y].color;
-                // makes the squares look yellow
+            Color temp = chessBoard[x][y].color;
+
+            if (chessBoard[x][y].isVaild) {
                 temp.r += 50;
                 temp.g += 50;
-
-                // checks for overflow related issues, this isn't the best way but it works
-                if (temp.r < chessBoard[x][y].color.r) { temp.r = 255; }
-                if (temp.g < chessBoard[x][y].color.g) { temp.g = 255; }
-                if (temp.b < chessBoard[x][y].color.b) { temp.b = 255; } 
-
-                DrawRectangleRec(chessBoard[x][y].rectangle, temp);
+            } else if (chessBoard[x][y].piece.type == KING) {
+                if (isWhiteCheck && chessBoard[x][y].piece.color == true) {
+                    temp.r += 50;
+                }
+                if (isBlackCheck && chessBoard[x][y].piece.color == false) {
+                    temp.r += 50;
+                }
             }
+
+            // checks for overflow related issues, this isn't the best way but it works
+            if (temp.r < chessBoard[x][y].color.r) { temp.r = 255; }
+            if (temp.g < chessBoard[x][y].color.g) { temp.g = 255; }
+            if (temp.b < chessBoard[x][y].color.b) { temp.b = 255; } 
+
+            DrawRectangleRec(chessBoard[x][y].rectangle, temp);
         }
     }
 }

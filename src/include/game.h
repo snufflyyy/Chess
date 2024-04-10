@@ -1,7 +1,7 @@
-#ifndef CHESS_VARIABLES_H
-#define CHESS_VARIABLES_H
-
-#include <stdbool.h>
+#ifndef CHESS_GAME_H
+#define CHESS_GAME_H
+#include <raylib.h>
+#include "board.h"
 
 #define WINDOWWIDTH 800 
 #define WINDOWHEIGHT 800
@@ -15,5 +15,9 @@
 #endif
 
 extern bool color;
+extern bool isWhiteCheck;
+extern bool isBlackCheck;
 
-#endif //CHESS_VARIABLES_H
+extern Tile checkBoard[8][8];
+
+#endif //CHESS_GAME_H

@@ -27,9 +27,9 @@ add_executable(
         src/board.c
         src/include/piece.h
         src/piece.c
-        src/include/variables.h
-        src/variables.c
-        src/input.c
+        src/include/game.h
+        src/game.c
         src/include/input.h
+        src/input.c
 )
 target_link_libraries(Chess raylib)

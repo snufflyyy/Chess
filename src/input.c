@@ -1,15 +1,12 @@
 #include "include/input.h"
 #include "include/board.h"
 #include "include/piece.h"
-#include "include/variables.h"
+#include "include/game.h"
 #include <raylib.h>
 #include <stdio.h>
 
 Vector2 selectedPiece = {-1,-1};
 Vector2 selectedPieceOGPos = {-1, -1};
-
-bool isWhiteCheck = false;
-bool isBlackCheck = false;
 
 void input() {
     // selects a piece
@@ -48,18 +45,10 @@ void input() {
                             chessBoard[x - 1][y].piece = chessBoard[(int) selectedPiece.x][(int) selectedPiece.y].piece;
                             chessBoard[x - 1][y].piece.rectangle = temp;
 
-                            chessBoard[(int) selectedPiece.x][(int) selectedPiece.y].piece.type = NONE;
-                            chessBoard[(int) selectedPiece.x][(int) selectedPiece.y].piece.moves = 0;
-
                             // rook
                             temp = chessBoard[x - 2][y].piece.rectangle;
                             chessBoard[x - 2][y].piece = chessBoard[x][y].piece;
                             chessBoard[x - 2][y].piece.rectangle = temp;
-
-                            chessBoard[x][y].piece.type = NONE;
-                            chessBoard[x][y].piece.moves = 0;
-
-                            rotateBoard();
                         } else { // rook to the left
                             // queen
                             Rectangle temp = chessBoard[x + 2][y].piece.rectangle;
@@ -67,20 +56,15 @@ void input() {
                             chessBoard[x + 2][y].piece.rectangle = temp;
                             chessBoard[x + 2][y].piece.moves++;
 
-                            chessBoard[(int) selectedPiece.x][(int) selectedPiece.y].piece.type = NONE;
-                            chessBoard[(int) selectedPiece.x][(int) selectedPiece.y].piece.moves = 0;
-
                             // rook
                             temp = chessBoard[x + 3][y].piece.rectangle;
                             chessBoard[x + 3][y].piece = chessBoard[x][y].piece;
                             chessBoard[x + 3][y].piece.rectangle = temp;
                             chessBoard[x + 3][y].piece.moves++;
-
-                            chessBoard[x][y].piece.type = NONE;
-                            chessBoard[x][y].piece.moves = 0;
-
-                            rotateBoard();
                         }
+
+                        chessBoard[x][y].piece.type = NONE;
+                        chessBoard[x][y].piece.moves = 0;
                     } else {
                         Rectangle temp = chessBoard[x][y].piece.rectangle;
                         chessBoard[x][y].piece = chessBoard[(int) selectedPiece.x][(int) selectedPiece.y].piece;
@@ -104,15 +88,19 @@ void input() {
                         if (chessBoard[(int) selectedPiece.x][(int) selectedPiece.y].piece.type == PAWN && (int) selectedPiece.y - 2 == y) {
                             chessBoard[x][y].piece.canEnPassant = true;
                         }
-
-                        chessBoard[(int) selectedPiece.x][(int) selectedPiece.y].piece.type = NONE;
-                        chessBoard[(int) selectedPiece.x][(int) selectedPiece.y].piece.moves = 0;
-
-                        rotateBoard();
                     }
+
+                    chessBoard[(int) selectedPiece.x][(int) selectedPiece.y].piece.type = NONE;
+                    chessBoard[(int) selectedPiece.x][(int) selectedPiece.y].piece.moves = 0;
+
+                    checkForCheck();
+
+                    rotateBoard();
                 } else {
-                    chessBoard[(int) selectedPiece.x][(int) selectedPiece.y].piece.rectangle.x = selectedPieceOGPos.x;
-                    chessBoard[(int) selectedPiece.x][(int) selectedPiece.y].piece.rectangle.y = selectedPieceOGPos.y;
+                    if (selectedPieceOGPos.x != -1 && selectedPieceOGPos.y != -1) {
+                        chessBoard[(int) selectedPiece.x][(int) selectedPiece.y].piece.rectangle.x = selectedPieceOGPos.x;
+                        chessBoard[(int) selectedPiece.x][(int) selectedPiece.y].piece.rectangle.y = selectedPieceOGPos.y;
+                    }
                 }
             }
         }
