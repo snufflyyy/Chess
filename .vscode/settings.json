@@ -1,7 +1,0 @@
-{
-  "files.associations": {
-    "variables.h": "c",
-    "*.m": "c",
-    "board.h": "c"
-  }
-}
