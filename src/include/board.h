@@ -1,24 +1,29 @@
 #ifndef CHESS_BOARD_H
 #define CHESS_BOARD_H
 
+#include <stdbool.h>
 #include <raylib.h>
-#include "piece.h"
 
-typedef struct {
+#include "game.h"
+#include "pieces.h"
+
+typedef struct Tile {
     char letter;
     int number;
     bool isValid;
-    Piece piece;
     Rectangle rectangle;
     Color color;
+    Piece piece;
 } Tile;
 
-extern Tile chessBoard[8][8];
-extern Tile checkBoard[8][8];
+extern Tile chessBoard[BOARDSIZE][BOARDSIZE];
+extern bool checkBoard[BOARDSIZE][BOARDSIZE];
 
 void createBoard();
-void checkForCheck();
 void rotateBoard();
-void drawBoard();
 
-#endif //CHESS_BOARD_H
+void drawBoard();
+void drawLetters();
+void drawNumbers();
+
+#endif

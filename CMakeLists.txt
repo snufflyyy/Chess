@@ -21,15 +21,17 @@ FetchContent_MakeAvailable(raylib)
 include_directories(src/include)
 
 add_executable(
-        Chess
-        src/main.c
-        src/include/board.h
-        src/board.c
-        src/include/piece.h
-        src/piece.c
-        src/include/game.h
-        src/game.c
-        src/include/input.h
-        src/input.c
+    Chess
+    src/main.c
+    src/include/input.h
+    src/input.c
+    src/include/board.h
+    src/board.c
+    src/include/pieces.h
+    src/pieces.c
+    src/include/game.h
+    src/game.c
+    src/include/input.h
+    src/input.c
 )
 target_link_libraries(Chess raylib)

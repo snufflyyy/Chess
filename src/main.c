@@ -1,26 +1,36 @@
-#include <raylib.h>
 #include <stdio.h>
+
+#include <raylib.h>
 
 #include "include/game.h"
 #include "include/board.h"
-#include "include/piece.h"
 #include "include/input.h"
 
 int main() {
     setup();
 
     while (!WindowShouldClose()) {
-        input();
-        
+        if (IsWindowResized()) {
+            resize();
+        }
+
+        //input();
+
+        // debug
+        if (IsKeyPressed(KEY_R)) {
+            rotateBoard();
+        }
+
         BeginDrawing();
-            ClearBackground(BLACK);
+            ClearBackground(borderColor);
             drawBoard();
             drawPieces();
+            drawLetters();
+            drawNumbers();
         EndDrawing();
     }
 
-    pieceCleanUp();
+    cleanUp();
     CloseWindow();
-
     return 0;
 }

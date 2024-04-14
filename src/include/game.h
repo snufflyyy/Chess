@@ -1,25 +1,22 @@
 #ifndef CHESS_GAME_H
 #define CHESS_GAME_H
-#include <raylib.h>
-#include "board.h"
 
-#define WINDOWWIDTH 600
-#define WINDOWHEIGHT 600
+#define BOARDSIZE 8
 
-// finds the correct tile size based on the
-// window sizes listed above
-#if WINDOWWIDTH < WINDOWHEIGHT
-    #define TILESIZE (WINDOWWIDTH / 8)
-#else
-    #define TILESIZE (WINDOWHEIGHT / 8)
-#endif
+extern int windowWidth;
+extern int windowHeight;
+extern float borderThinkness;
+extern float tileScale;
 
-extern bool color;
-extern bool isWhiteCheck;
-extern bool isBlackCheck;
+extern const Color borderColor;
+extern const Color lightTileColor;
+extern const Color darkTileColor;
 
-extern Tile checkBoard[8][8];
+// true is white and false is black
+extern bool currentColor;
 
 void setup();
+void resize();
+void cleanUp();
 
-#endif //CHESS_GAME_H
+#endif

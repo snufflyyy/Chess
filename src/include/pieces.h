@@ -1,7 +1,10 @@
-#ifndef CHESS_PIECE_H
-#define CHESS_PIECE_H
+#ifndef CHESS_PIECES_H
+#define CHESS_PIECES_H
 
 #include <raylib.h>
+
+extern Image windowIconWhite;
+extern Image windowIconBlack;
 
 typedef enum {
     NONE,
@@ -22,10 +25,12 @@ typedef struct {
     bool canEnPassant;
 } Piece;
 
+void loadPieceImages();
+void createPieces();
+void resizePieces();
 void getValidMoves(int x, int y);
 bool isValidMove(int x, int y, int x2, int y2);
-void createPieces();
 void drawPieces();
-void pieceCleanUp();
+void cleanUpPieces();
 
-#endif //CHESS_PIECE_H
+#endif
