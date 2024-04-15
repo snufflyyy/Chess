@@ -64,6 +64,13 @@ void rotateBoard() {
 void drawBoard() {
     for (int x = 0; x < BOARDSIZE; x++) {
         for (int y = 0; y < BOARDSIZE; y++) {
+            Color temp = chessBoard[x][y].color;
+
+            // check for overflow issues with the colors, not the best way but works
+            if (temp.r < chessBoard[x][y].color.r) { temp.r = 255; };
+            if (temp.g < chessBoard[x][y].color.g) { temp.g = 255; };
+            if (temp.b < chessBoard[x][y].color.b) { temp.b = 255; };
+
             DrawRectangleV (
                 (Vector2) {
                     chessBoard[x][y].rectangle.x,
@@ -72,7 +79,7 @@ void drawBoard() {
                 (Vector2) {
                     tileScale, tileScale
                 },
-                chessBoard[x][y].color
+                temp
             );
         }
     }

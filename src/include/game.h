@@ -3,6 +3,8 @@
 
 #define BOARDSIZE 8
 
+#include <raylib.h>
+
 extern int windowWidth;
 extern int windowHeight;
 extern float borderThinkness;
@@ -14,6 +16,8 @@ extern const Color darkTileColor;
 
 // true is white and false is black
 extern bool currentColor;
+
+extern Vector2 selectedPiece;
 
 void setup();
 void resize();

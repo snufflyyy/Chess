@@ -28,8 +28,7 @@ typedef struct {
 void loadPieceImages();
 void createPieces();
 void resizePieces();
-void getValidMoves(int x, int y);
-bool isValidMove(int x, int y, int x2, int y2);
+
 void drawPieces();
 void cleanUpPieces();
 

@@ -220,7 +220,21 @@ void resizePieces() {
 void drawPieces() {
     for (int x = 0; x < 8; x++) {
         for (int y = 0; y < 8; y++) {
-            if ((chessBoard[x][y].piece.type != NONE)) {
+            if ((chessBoard[x][y].piece.type != NONE) && (x != ((int) selectedPiece.x) || y != ((int) selectedPiece.y))) {
+                DrawTexture (
+                    chessBoard[x][y].piece.texture,
+                    chessBoard[x][y].piece.rectangle.x,
+                    chessBoard[x][y].piece.rectangle.y,
+                    WHITE
+                );
+            }
+        }
+    }
+
+    // this is used to make the selected piece render above the other pieces
+    for (int x = 0; x < 8; x++) {
+        for (int y = 0; y < 8; y++) {
+            if ((chessBoard[x][y].piece.type != NONE) && x == ((int) selectedPiece.x) && y == ((int) selectedPiece.y)) {
                 DrawTexture (
                     chessBoard[x][y].piece.texture,
                     chessBoard[x][y].piece.rectangle.x,

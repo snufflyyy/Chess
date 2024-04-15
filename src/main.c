@@ -14,7 +14,7 @@ int main() {
             resize();
         }
 
-        //input();
+        input();
 
         // debug
         if (IsKeyPressed(KEY_R)) {

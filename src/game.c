@@ -5,8 +5,8 @@
 #include "include/game.h"
 
 // default values
-int windowWidth = 600;
-int windowHeight = 600;
+int windowWidth = 800;
+int windowHeight = 800;
 float borderThinkness = 20; // the border around the chess board in pixels
 float tileScale = 70;
 
@@ -16,6 +16,9 @@ const Color lightTileColor = {212, 212, 212, 255};
 const Color darkTileColor = {148, 148, 148, 255};
 
 bool currentColor;
+
+// no selected piece
+Vector2 selectedPiece = {-1, -1};
 
 // used for window resizing
 void getTileScale() {
